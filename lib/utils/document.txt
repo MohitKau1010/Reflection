@@ -1,0 +1,48 @@
+////////////////////////////////////
+////////////////////////////////////
+
+@action
+Future<List<ReviewModel>> _getReviews() async {
+
+  final SharedPreferences _preferences =  await SharedPreferences.getInstance();
+
+  final List<String> reviewsStringList =  _preferences.getStringList('userReviews') ?? [];
+
+  final List<ReviewModel> retrievedReviews = [];
+
+    ///
+  for (String reviewString in reviewsStringList) {
+    Map<String, dynamic> reviewMap = jsonDecode(reviewString);
+    ReviewModel review = ReviewModel.fromJson(reviewMap);
+    retrievedReviews.add(review);
+  }
+
+  return retrievedReviews;
+}
+
+////////////////////////////////////
+////////////////////////////////////
+
+////save List<String> in SharedPreferences. Here is how you should do it.
+
+prefs.setStringList("key", yourList);
+SharedPreferences prefs;
+List<String> list;
+// ...
+
+
+Future<bool> _saveList() async {
+  return await prefs.setStringList("key", list);
+}
+
+List<String> _getList() {
+  return prefs.getStringList("key");
+}
+
+////////////////////////////////////
+////////////////////////////////////
+
+///for status bar color change
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Constants.colorPrimary, // status bar color
+    ));
