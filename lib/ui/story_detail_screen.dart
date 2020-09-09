@@ -191,7 +191,6 @@ class _StoryDetailScreenState extends State<StoryDetailScreen> implements AlertD
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                             color: Utils.hexToColor("#43b3e0"),
-                            //Color.fromARGB(999, 67, 179, 224),
                             borderRadius:
                             new BorderRadius.all(Radius.circular(29.0))),
                         child: Column(
@@ -202,47 +201,14 @@ class _StoryDetailScreenState extends State<StoryDetailScreen> implements AlertD
                               height: 50,
                             ),
 
-                            ///input text for search stories..
-                            //_inputText(),
-
                             SizedBox(height: 30.0),
                             SizedBox(
                               height: 400.0,
-
-                              //FutureBuilder<StoreListData>(
-                              //                                future: _storyList,
-                              //                                builder: (context,snapshot) {
-                              //                                  if(snapshot.hasData){
-                              //                                    return ListView.builder(
-                              //                                      itemCount: snapshot.data.stories.length,
-                              //                                        itemBuilder: (context,index){
                               child: ListView.builder(
                                 itemCount: widget.listQuestion.length,
                                 itemBuilder: (context, index) {
                                   return _listTile(widget.listQuestion[index]);
                                 },
-                                /*padding: EdgeInsets.all(0),
-                                children: [
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                  Divider(),
-                                  _listTile(),
-                                ],*/
                               ),
                             ),
 
@@ -341,8 +307,6 @@ class _StoryDetailScreenState extends State<StoryDetailScreen> implements AlertD
     if (text.isEmpty) {
       DialogUtils(this).saveDialog(context, true, false);
     } else {
-      //Utils.showToast(text);
-
       List<Question> question = widget.listQuestion;
 
       //storyData
@@ -356,8 +320,9 @@ class _StoryDetailScreenState extends State<StoryDetailScreen> implements AlertD
     var saveStoryD = SaveStory(name: text,data: storyData);
     Log.d("saveStoryD list is >> $saveStoryD");
 
-    var response = ApiManager().saveStories(saveStoryD);
-
+    ///hit save api
+    ApiManager().saveStories(saveStoryD);
+    //var response =
     //Utils.showToast(response.toString());
 
     NavigationHelper.push(context, HomeScreen());

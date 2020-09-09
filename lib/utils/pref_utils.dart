@@ -29,19 +29,6 @@ class PrefUtils {
       prefs.remove(key);
   }
 
-  ////////////////////////
-  /*loadSharedPrefs() async {
-    try {
-      User user = User.fromJson(await sharedPref.readListData("user"));
-      setState(() {
-        userLoad = user;
-      });
-    } catch (Excepetion) {
-      // do something
-    }
-  }*/
-  ////////////////////////
-
   static setBoolValue(String key,bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(key,value);
